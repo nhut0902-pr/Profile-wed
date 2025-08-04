@@ -28,11 +28,10 @@ function erase() {
 
 type();
 
-// 2. Chế độ sáng/tối (đã sửa lỗi)
+// 2. Chế độ sáng/tối
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const body = document.body;
 
-// Kiểm tra chế độ đã lưu
 if (localStorage.getItem('dark-mode') === 'enabled') {
   body.classList.add('dark-mode');
   darkModeToggle.checked = true;
@@ -40,11 +39,7 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
 
 darkModeToggle.addEventListener('change', () => {
   body.classList.toggle('dark-mode');
-  if (body.classList.contains('dark-mode')) {
-    localStorage.setItem('dark-mode', 'enabled');
-  } else {
-    localStorage.setItem('dark-mode', 'disabled');
-  }
+  localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
 });
 
 // 3. Danh sách AI Tools có link
@@ -62,7 +57,6 @@ const tools = [
 ];
 
 const toolList = document.getElementById('tool-list');
-
 tools.forEach(tool => {
   const card = document.createElement('div');
   card.className = 'tool-card';
@@ -75,14 +69,80 @@ tools.forEach(tool => {
   toolList.appendChild(card);
 });
 
-// 4. Form đăng ký - Hiển thị thông báo
-const signupForm = document.getElementById('signup-form');
-const signupMessage = document.getElementById('signup-message');
+// 4. Blog / Tin tức AI
+const blogPosts = [
+  { title: "Hướng dẫn dùng ChatGPT hiệu quả", date: "10/04/2025", desc: "5 mẹo giúp bạn khai thác tối đa sức mạnh của ChatGPT." },
+  { title: "Gemini vs GPT-4: Ai mạnh hơn?", date: "05/04/2025", desc: "So sánh chi tiết hiệu suất, tốc độ và độ chính xác." },
+  { title: "Mẹo lập trình nhanh với GitHub Copilot", date: "01/04/2025", desc: "Tăng tốc code với trợ lý AI ngay trong VS Code." }
+];
 
-signupForm.addEventListener('submit', (e) => {
-  // Không ngăn chặn nếu dùng Formspree (để gửi)
-  signupMessage.style.display = 'block';
-  setTimeout(() => {
-    signupMessage.style.display = 'none';
-  }, 3000);
+const blogList = document.getElementById('blog-list');
+blogPosts.forEach(post => {
+  const item = document.createElement('div');
+  item.className = 'blog-post';
+  item.innerHTML = `
+    <h3>${post.title}</h3>
+    <span class="date">${post.date}</span>
+    <p>${post.desc}</p>
+  `;
+  blogList.appendChild(item);
 });
+
+// 5. Modal cảm ơn
+const modal = document.getElementById('thank-you-modal');
+const closeBtn = document.querySelector('.close');
+const closeModalBtn = document.getElementById('close-modal');
+const signupForm = document.getElementById('signup-form');
+
+signupForm.addEventListener('submit', function(e) {
+  // Không ngăn submit form (để Formspree xử lý)
+  setTimeout(() => {
+    modal.style.display = 'block';
+  }, 1000); // Chờ 1s để đảm bảo gửi thành công
+});
+
+closeBtn.onclick = () => modal.style.display = 'none';
+closeModalBtn.onclick = () => modal.style.display = 'none';
+window.onclick = (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+};
+
+// 6. Easter Egg: Nhấn 5 lần vào avatar
+const avatar = document.getElementById('avatar');
+let clickCount = 0;
+
+avatar.addEventListener('click', () => {
+  clickCount++;
+  if (clickCount === 5) {
+    alert("🎉 Chúc mừng! Bạn đã tìm thấy Easter Egg bí mật! Cảm ơn bạn đã khám phá trang web của tôi!");
+    clickCount = 0;
+  }
+});
+
+// 7. Thống kê lượt tải (giả lập - bạn có thể thay bằng API GitHub sau)
+const downloadCount = document.getElementById('download-count');
+let count = 0;
+const target = 1234; // Số lượt tải thực tế
+
+const counter = setInterval(() => {
+  if (count < target) {
+    count++;
+    downloadCount.textContent = count.toLocaleString();
+  } else {
+    clearInterval(counter);
+  }
+}, 3);
+
+// Đếm người đăng ký (giả lập)
+const subscriberCount = document.getElementById('subscriber-count');
+let subCount = 0;
+const subTarget = 567;
+
+const subCounter = setInterval(() => {
+  if (subCount < subTarget) {
+    subCount++;
+    subscriberCount.textContent = subCount.toLocaleString();
+  } else {
+    clearInterval(subCounter);
+  }
+}, 10);
