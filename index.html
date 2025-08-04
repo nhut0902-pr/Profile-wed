@@ -1,109 +1,99 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nhutcoder - Lập trình viên & AI Enthusiast</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nhutcoder - Profile & APK Download</title>
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- NÚT CHUYỂN CHẾ ĐỘ SÁNG/TỐI -->
-    <button class="theme-switcher" id="theme-switcher" aria-label="Switch to dark mode">
-        <i class="fas fa-moon"></i>
-    </button>
 
-    <header class="hero">
-        <div class="container">
-            <img src="assets/profile.jpg" alt="Ảnh đại diện của Nhutcoder" id="profile-pic">
-            <h1>Nhutcoder</h1>
-            <!-- HIỆU ỨNG GÕ CHỮ SẼ XUẤT HIỆN Ở ĐÂY -->
-            <p class="subtitle">Tôi là một <span id="typing-target"></span></p>
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <div class="profile-section">
+        <img src="avatar.png" alt="Nhutcoder" class="avatar">
+        <div class="typing-text">
+          <h1 id="typing-text">Nhutcoder</h1>
         </div>
-    </header>
+      </div>
+      <p>Developer | AI Enthusiast | Tech Blogger</p>
+    </div>
+  </header>
 
-    <main>
-        <section id="about" class="fade-in">
-            <div class="container">
-                <h2 class="section-title"><i class="fas fa-user"></i> Giới thiệu</h2>
-                <p>Tôi là Nhutcoder, một lập trình viên đam mê xây dựng các ứng dụng di động hiệu suất cao và khám phá tiềm năng vô hạn của Trí tuệ Nhân tạo để giải quyết các vấn đề thực tế.</p>
-            </div>
-        </section>
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <h2>Liên hệ với tôi</h2>
+      <ul class="contact-list">
+        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/nhut0902-pr">GitHub</a></li>
+        <li><i class="fa-brands fa-facebook"></i> <a href="https://www.facebook.com/share/15nrEZtVMx/">Facebook</a></li>
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:lamminhnhut09022011@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </section>
 
-        <section id="skills" class="fade-in">
-            <div class="container">
-                <h2 class="section-title"><i class="fas fa-cogs"></i> Kỹ Năng</h2>
-                <div class="skills-grid">
-                    <div class="skill-item"><i class="fab fa-android"></i><p>Kotlin/Java</p></div>
-                    <div class="skill-item"><i class="fas fa-mobile-alt"></i><p>Jetpack Compose</p></div>
-                    <div class="skill-item"><i class="fas fa-code-branch"></i><p>Git & GitHub</p></div>
-                    <div class="skill-item"><i class="fas fa-database"></i><p>Firebase/SQL</p></div>
-                    <div class="skill-item"><i class="fas fa-robot"></i><p>API Integration</p></div>
-                    <div class="skill-item"><i class="fas fa-paint-brush"></i><p>UI/UX</p></div>
-                </div>
-            </div>
-        </section>
+  <!-- APK Download Section -->
+  <section class="download-section">
+    <div class="container">
+      <h2>Tải APK qua link</h2>
+      <a href="#" class="download-btn">Tải APK ngay</a>
+    </div>
+  </section>
 
-        <section id="projects" class="fade-in">
-            <div class="container">
-                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Dự Án Nổi Bật</h2>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/project-image.png" alt="Ảnh chụp màn hình ứng dụng TikTok Downloader">
-                    </div>
-                    <div class="project-info">
-                        <h3>Locked App </h3>
-                        <p>Ứng dụng cho phép người dùng khóa ứng dụng bằng sinh trắc học.</p>
-                        <div class="project-tags">
-                            <span class="tag">Kotlin</span><span class="tag">API</span><span class="tag">Jetpack Compose</span>
-                        </div>
-                        <div class="project-links">
-                            <!-- !!! LINK ĐÃ ĐƯỢC CẬP NHẬT CHÍNH XÁC THEO LINK BẠN GỬI !!! -->
-                            <a href="https://github.com/nhut0902-pr/Profile-wed/releases/download/v1.1.0/app-release.apk" class="btn" download><i class="fas fa-download"></i> Tải về (.apk)</a>
-                            <a href="https://github.com/nhut0902-pr/Quan-ly-ch-tieu-thong-minh-voi-AI" class="btn btn-secondary" target="_blank"><i class="fab fa-github"></i> Xem Code</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="ai-tools" class="fade-in">
-            <div class="container">
-                <h2 class="section-title"><i class="fas fa-star"></i> Bộ Công Cụ AI Chuyên Dụng</h2>
-                <div class="tools-grid">
-                    <a href="https://www.perplexity.ai/" class="tool-card" target="_blank"><i class="fas fa-search-plus"></i><h3>Perplexity AI</h3><p>Công cụ tìm kiếm và trả lời có trích dẫn nguồn, tuyệt vời cho việc nghiên cứu.</p></a>
-                    <a href="https://claude.ai/" class="tool-card" target="_blank"><i class="fas fa-feather-alt"></i><h3>Claude</h3><p>Mô hình ngôn ngữ mạnh mẽ, xử lý các văn bản dài và phức tạp hiệu quả.</p></a>
-                    <a href="https://www.leonardo.ai/" class="tool-card" target="_blank"><i class="fas fa-palette"></i><h3>Leonardo.Ai</h3><p>Tạo hình ảnh và assets game chuyên nghiệp từ văn bản, có nhiều model tùy chỉnh.</p></a>
-                    <a href="https://runwayml.com/" class="tool-card" target="_blank"><i class="fas fa-film"></i><h3>RunwayML</h3><p>Bộ công cụ AI cho video, từ tạo video bằng văn bản đến chỉnh sửa ma thuật.</p></a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="fade-in">
-            <div class="container">
-                <h2 class="section-title"><i class="fas fa-envelope"></i> Liên Hệ</h2>
-                <p>Sẵn sàng cho những thử thách mới. Hãy kết nối!</p>
-                <div class="social-links">
-                    <a href="LINK_LINKEDIN_CỦA_BẠN" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/nhut0902-pr" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="mailto:lamminhnhut09022011@gmail.com"><i class="fas fa-envelope-square"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>© 2024 - Nhutcoder. All Rights Reserved.</p>
+  <!-- AI Tools Section -->
+  <section class="ai-tools">
+    <div class="container">
+      <h2>Danh sách 10 công cụ AI mạnh nhất</h2>
+      <div class="tool-list">
+        <!-- Tool Cards -->
+        <div class="tool-card">
+          <h3><i class="fa-solid fa-code"></i> ChatGPT</h3>
+          <p>Trợ lý AI đa năng từ OpenAI.</p>
         </div>
-    </footer>
+        <div class="tool-card">
+          <h3><i class="fa-solid fa-magnifying-glass"></i> DALL-E</h3>
+          <p>Động cơ tạo hình ảnh AI của OpenAI.</p>
+        </div>
+        <!-- Add more tools here -->
+      </div>
+    </div>
+  </section>
 
-    <!-- Thư viện cho hiệu ứng gõ chữ -->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <!-- Link đến file JavaScript của bạn -->
-    <script src="js/script.js"></script>
+  <!-- Signup Form -->
+  <section class="signup-section">
+    <div class="container">
+      <h2>Đăng ký nhận thông tin mới</h2>
+      <form>
+        <input type="email" placeholder="Email của bạn" required>
+        <button type="submit">Đăng ký</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Nhutcoder. All rights reserved.</p>
+      <div class="mode-switch">
+        <label class="switch">
+          <input type="checkbox" id="dark-mode-checkbox">
+          <span class="slider round"></span>
+        </label>
+        <span>Chế độ tối</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link to JS -->
+  <script src="script.js"></script>
 </body>
 </html>
