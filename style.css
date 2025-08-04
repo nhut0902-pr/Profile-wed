@@ -37,11 +37,13 @@ header {
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
 }
 
 .avatar:hover {
   transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .typing-container {
@@ -59,6 +61,52 @@ header p {
   font-size: 1.1rem;
   color: #ddd;
   opacity: 0.9;
+}
+
+/* Stats Section */
+.stats-section {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px 30px;
+  min-width: 180px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: block;
+  color: #4ecdc4;
+}
+
+.stat-box p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.stat-box i {
+  font-size: 1.8rem;
+  color: #ff6b6b;
 }
 
 /* Download Section */
@@ -83,13 +131,13 @@ header p {
   padding: 15px 40px;
   border-radius: 50px;
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 .download-btn:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
   background: #ff5252;
 }
 
@@ -124,7 +172,7 @@ header p {
 
 .tool-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .tool-card h3 {
@@ -144,6 +192,53 @@ header p {
   font-size: 0.95rem;
   color: #ddd;
   text-align: center;
+}
+
+/* Blog Section */
+.blog-section {
+  margin: 60px 0;
+  padding: 40px 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.blog-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.blog-post {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+
+.blog-post h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.blog-post .date {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.blog-post p {
+  font-size: 0.95rem;
+  color: #ddd;
 }
 
 /* Signup Section */
@@ -195,7 +290,7 @@ header p {
   background: #44a0a0;
 }
 
-/* Contact Section (cuối trang) */
+/* Contact Section */
 .contact-section {
   margin: 60px 0 0 0;
   padding: 50px 0;
@@ -292,20 +387,109 @@ input:checked + .slider:before {
   transform: translateX(24px);
 }
 
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  color: #333;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.4s ease;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.modal-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-primary, .btn-social {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: #4ecdc4;
+  color: white;
+}
+
+.btn-social {
+  background: #1877f2;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #44a0a0;
+}
+
+.btn-social:hover {
+  background: #1668c5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 /* Dark Mode */
 body.dark-mode {
   background: #111;
   color: #eee;
 }
 
-body.dark-mode .tool-card {
+body.dark-mode .tool-card,
+body.dark-mode .blog-post {
   background: #222;
   border: 1px solid #444;
 }
 
 body.dark-mode .signup-section,
-body.dark-mode .contact-section {
+body.dark-mode .contact-section,
+body.dark-mode .blog-section {
   background: #222;
+}
+
+body.dark-mode .stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #444;
 }
 
 body.dark-mode input[type="email"] {
@@ -315,4 +499,18 @@ body.dark-mode input[type="email"] {
 
 body.dark-mode footer {
   background: #333;
+  color: #ccc;
+}
+
+body.dark-mode .modal-content {
+  background: #222;
+  color: #fff;
+}
+
+body.dark-mode .close {
+  color: #ccc;
+}
+
+body.dark-mode .close:hover {
+  color: #fff;
 }
