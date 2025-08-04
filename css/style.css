@@ -1,138 +1,258 @@
-/* --- General Styling with CSS Variables for Theming --- */
-:root {
-    --primary-color: #007BFF;
-    --primary-hover-color: #0056b3;
-    --secondary-color: #f4f4f9;
-    --dark-color: #2c3e50;
-    --light-color: #ffffff;
-    --text-color: #555;
-    --text-color-light: #f1f1f1;
-    --background-color: var(--light-color);
-    --card-background-color: var(--light-color);
-    --header-text-color: var(--dark-color);
-    --border-color: #e0e0e0;
-    --border-radius: 12px;
-}
-
-body.dark-mode {
-    --primary-color: #0084ff;
-    --primary-hover-color: #339aff;
-    --secondary-color: #1a1a1a;
-    --dark-color: #e0e0e0;
-    --light-color: #121212;
-    --text-color: #a0a0a0;
-    --text-color-light: #f1f1f1;
-    --background-color: #121212;
-    --card-background-color: #1e1e1e;
-    --header-text-color: #ffffff;
-    --border-color: #333333;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Be Vietnam Pro', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.7;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  line-height: 1.6;
+  transition: background-color 0.3s ease;
 }
 
-/* Các styles khác giữ nguyên và sử dụng biến */
-.container { max-width: 960px; margin: auto; overflow: hidden; padding: 0 2rem; }
-h1, h2, h3 { color: var(--header-text-color); font-weight: 700; transition: color 0.3s ease; }
-section { padding: 5rem 0; }
-.section-title { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; position: relative; }
-.section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--primary-color); margin: 0.5rem auto 0; border-radius: 2px; }
-
-/* --- JS Fade-in Animation --- */
-.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-/* --- NEW: Theme Switcher Button --- */
-.theme-switcher {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
-    background-color: var(--card-background-color);
-    color: var(--text-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-.theme-switcher:hover { transform: scale(1.1); color: var(--primary-color); }
-body.dark-mode .theme-switcher .fa-moon { display: none; }
-body:not(.dark-mode) .theme-switcher .fa-sun { display: none; } /* Add this line if you add a sun icon */
-
-/* --- NEW: Animated Hero Section --- */
-.hero {
-    color: var(--light-color);
-    text-align: center;
-    padding: 6rem 0;
-    background: linear-gradient(45deg, #007bff, #4e54c8, #8f94fb);
-    background-size: 400% 400%;
-    animation: gradient-animation 15s ease infinite;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
-@keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-.hero img { width: 150px; height: 150px; border-radius: 50%; border: 5px solid var(--light-color); object-fit: cover; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-.hero h1 { color: var(--light-color); font-size: 3rem; margin-top: 1rem; margin-bottom: 0.5rem; }
-.hero p.subtitle { font-size: 1.3rem; color: var(--light-color); font-weight: 400; opacity: 0.9; min-height: 2rem; }
-
-/* --- NEW: Typing Effect Cursor --- */
-.typed-cursor {
-    color: var(--light-color);
-    opacity: 1;
-    animation: typed-blink 0.7s infinite;
-}
-@keyframes typed-blink {
-    50% { opacity: 0.0; }
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-/* --- Sections Styling using Variables --- */
-#skills, #ai-tools { background-color: var(--secondary-color); }
-.skill-item, .project-card, .tool-card { background: var(--card-background-color); border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; }
+.typing-text {
+  display: inline-block;
+  vertical-align: middle;
+}
 
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; text-align: center; }
-.skill-item { padding: 1.5rem; border-radius: var(--border-radius); }
-.skill-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-.skill-item i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+#typing-text {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
 
-.project-card { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; padding: 2.5rem; border-radius: var(--border-radius); align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.07); }
-.project-image img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.project-info h3 { margin-top: 0; font-size: 1.8rem; }
-.project-tags { margin: 1rem 0; }
-.project-tags .tag { background: #e0eafc; color: var(--primary-color); padding: 0.4rem 0.9rem; border-radius: 15px; font-size: 0.8rem; margin-right: 0.5rem; font-weight: 500; display: inline-block; }
-.project-links .btn { text-decoration: none; color: var(--light-color); background: var(--primary-color); padding: 0.8rem 1.5rem; border-radius: 5px; display: inline-block; margin: 0.5rem 0.5rem 0.5rem 0; transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent; }
-.project-links .btn.btn-secondary { background: var(--dark-color); }
-.project-links .btn:hover { transform: translateY(-3px); background-color: var(--primary-hover-color); }
+header p {
+  font-size: 1.2rem;
+}
 
-.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-.tool-card { padding: 2rem; border-radius: var(--border-radius); text-align: center; text-decoration: none; color: var(--text-color); }
-.tool-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); }
-.tool-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
-.tool-card h3 { margin: 0 0 0.5rem 0; color: var(--header-text-color); }
-.tool-card p { font-size: 0.9rem; margin: 0; }
+/* Contact Section */
+.contact-section {
+  text-align: center;
+  margin: 60px 0;
+}
 
-#contact { text-align: center; }
-.social-links a { font-size: 2.5rem; color: var(--header-text-color); margin: 0 1.5rem; transition: color 0.3s ease, transform 0.3s ease; display: inline-block; }
-.social-links a:hover { color: var(--primary-color); transform: scale(1.2); }
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
 
-footer { text-align: center; padding: 2rem 0; background: var(--dark-color); color: var(--text-color-light); }
+.contact-list li {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
 
-@media (max-width: 768px) {
-    .project-card { grid-template-columns: 1fr; text-align: center; }
-    .project-image { max-width: 300px; margin: 0 auto 2rem auto; }
-    .hero h1 { font-size: 2.5rem; }
-                    }
+.contact-list a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-list a:hover {
+  color: #ff6b6b;
+}
+
+/* Download Section */
+.download-section {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.download-btn {
+  display: inline-block;
+  background: #ff6b6b;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+  background: #ff5252;
+}
+
+/* AI Tools Section */
+.ai-tools {
+  margin-top: 80px;
+}
+
+.ai-tools h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+}
+
+.tool-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.tool-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tool-card:hover {
+  transform: translateY(-10px);
+}
+
+.tool-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.tool-card h3 i {
+  margin-right: 10px;
+  color: #4ecdc4;
+}
+
+.tool-card p {
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+/* Signup Section */
+.signup-section {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.signup-section form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-section input[type="email"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.signup-section button {
+  background: #ff6b6b;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signup-section button:hover {
+  background: #ff5252;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 80px;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.mode-switch {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #222;
+}
+
+body.dark-mode .tool-card {
+  background: rgba(0, 0, 0, 0.1);
+}
