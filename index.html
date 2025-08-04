@@ -20,7 +20,7 @@
   <header>
     <div class="container">
       <div class="profile">
-        <img src="avatar.png" alt="Nhutcoder" class="avatar">
+        <img src="avatar.png" alt="Nhutcoder" class="avatar" id="avatar">
         <div class="typing-container">
           <h1 id="typing-text"></h1>
         </div>
@@ -29,12 +29,31 @@
     </div>
   </header>
 
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats">
+        <div class="stat-box">
+          <i class="fa-solid fa-download"></i>
+          <span class="stat-number" id="download-count">0</span>
+          <p>Lượt tải APK</p>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-user-group"></i>
+          <span class="stat-number" id="subscriber-count">0</span>
+          <p>Người đăng ký</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- APK Download -->
   <section class="download-section">
     <div class="container">
       <h2>📥 Tải Ứng Dụng APK</h2>
       <a href="https://github.com/nhut0902-pr/Profile-wed/releases/download/v1.1.0/app-release.apk" 
          class="download-btn" 
+         id="download-link"
          download="Nhutcoder_App_v1.1.0.apk">
         <i class="fa-solid fa-download"></i> Tải APK Ngay
       </a>
@@ -52,6 +71,16 @@
     </div>
   </section>
 
+  <!-- Blog Section -->
+  <section class="blog-section">
+    <div class="container">
+      <h2>📰 Tin tức & Blog AI</h2>
+      <div class="blog-list" id="blog-list">
+        <!-- Sẽ được thêm bằng JS -->
+      </div>
+    </div>
+  </section>
+
   <!-- Signup Form -->
   <section class="signup-section">
     <div class="container">
@@ -60,13 +89,10 @@
         <input type="email" name="email" placeholder="Nhập email của bạn" required>
         <button type="submit">Đăng ký</button>
       </form>
-      <p id="signup-message" style="display: none; color: #4ecdc4; margin-top: 10px;">
-        ✅ Cảm ơn bạn đã đăng ký! Chúng tôi sẽ gửi thông tin sớm.
-      </p>
     </div>
   </section>
 
-  <!-- Contact Info (dưới cùng) -->
+  <!-- Contact Info -->
   <section class="contact-section">
     <div class="container">
       <h2>📬 Liên hệ với tôi</h2>
@@ -91,6 +117,19 @@
       </div>
     </div>
   </footer>
+
+  <!-- Modal Cảm ơn -->
+  <div id="thank-you-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>🎉 Cảm ơn bạn đã đăng ký!</h3>
+      <p>Chúng tôi đã gửi email xác nhận. Hãy theo dõi để không bỏ lỡ cập nhật mới.</p>
+      <div class="modal-actions">
+        <a href="https://facebook.com/share/15nrEZtVMx/" target="_blank" class="btn-social">Theo dõi Facebook</a>
+        <a href="#" class="btn-primary" id="close-modal">Đóng</a>
+      </div>
+    </div>
+  </div>
 
   <!-- JS -->
   <script src="script.js"></script>
