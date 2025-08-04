@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nhutcoder - Profile & APK Download</title>
+  <title>Nhutcoder - Profile & AI Tools</title>
 
-  <!-- Link to CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Font Awesome -->
@@ -16,54 +16,48 @@
 </head>
 <body>
 
-  <!-- Header Section -->
+  <!-- Header -->
   <header>
     <div class="container">
-      <div class="profile-section">
+      <div class="profile">
         <img src="avatar.png" alt="Nhutcoder" class="avatar">
-        <div class="typing-text">
-          <h1 id="typing-text">Nhutcoder</h1>
+        <div class="typing-container">
+          <h1 id="typing-text"></h1>
         </div>
+        <p>Developer | AI Enthusiast | Tech Lover</p>
       </div>
-      <p>Developer | AI Enthusiast | Tech Blogger</p>
     </div>
   </header>
 
-  <!-- Contact Section -->
+  <!-- Contact Info -->
   <section class="contact-section">
     <div class="container">
       <h2>Liên hệ với tôi</h2>
       <ul class="contact-list">
-        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/nhut0902-pr">GitHub</a></li>
-        <li><i class="fa-brands fa-facebook"></i> <a href="https://www.facebook.com/share/15nrEZtVMx/">Facebook</a></li>
+        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/nhut0902-pr" target="_blank">GitHub</a></li>
+        <li><i class="fa-brands fa-facebook"></i> <a href="https://www.facebook.com/share/15nrEZtVMx/" target="_blank">Facebook</a></li>
         <li><i class="fa-solid fa-envelope"></i> <a href="mailto:lamminhnhut09022011@gmail.com">Email</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- APK Download Section -->
+  <!-- APK Download -->
   <section class="download-section">
     <div class="container">
-      <h2>Tải APK qua link</h2>
-      <a href="#" class="download-btn">Tải APK ngay</a>
+      <h2>📥 Tải Ứng Dụng APK</h2>
+      <a href="https://your-apk-link-here.com/app.apk" class="download-btn" download>
+        <i class="fa-solid fa-download"></i> Tải APK Ngay
+      </a>
+      <p class="note">Lưu ý: File APK an toàn, không chứa virus. Dung lượng: 25MB</p>
     </div>
   </section>
 
-  <!-- AI Tools Section -->
+  <!-- AI Tools -->
   <section class="ai-tools">
     <div class="container">
-      <h2>Danh sách 10 công cụ AI mạnh nhất</h2>
-      <div class="tool-list">
-        <!-- Tool Cards -->
-        <div class="tool-card">
-          <h3><i class="fa-solid fa-code"></i> ChatGPT</h3>
-          <p>Trợ lý AI đa năng từ OpenAI.</p>
-        </div>
-        <div class="tool-card">
-          <h3><i class="fa-solid fa-magnifying-glass"></i> DALL-E</h3>
-          <p>Động cơ tạo hình ảnh AI của OpenAI.</p>
-        </div>
-        <!-- Add more tools here -->
+      <h2>🤖 10 Công cụ AI mạnh nhất hiện nay</h2>
+      <div class="tool-list" id="tool-list">
+        <!-- Tools sẽ được thêm bằng JS -->
       </div>
     </div>
   </section>
@@ -71,29 +65,32 @@
   <!-- Signup Form -->
   <section class="signup-section">
     <div class="container">
-      <h2>Đăng ký nhận thông tin mới</h2>
-      <form>
-        <input type="email" placeholder="Email của bạn" required>
+      <h2>🔔 Đăng ký nhận cập nhật mới</h2>
+      <form id="signup-form">
+        <input type="email" placeholder="Nhập email của bạn" required>
         <button type="submit">Đăng ký</button>
       </form>
+      <p id="signup-message" style="display: none; color: #4ecdc4; margin-top: 10px;">
+        ✅ Cảm ơn bạn đã đăng ký!
+      </p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2023 Nhutcoder. All rights reserved.</p>
+      <p>&copy; 2025 Nhutcoder. All rights reserved.</p>
       <div class="mode-switch">
+        <span>Chế độ tối</span>
         <label class="switch">
-          <input type="checkbox" id="dark-mode-checkbox">
+          <input type="checkbox" id="dark-mode-toggle">
           <span class="slider round"></span>
         </label>
-        <span>Chế độ tối</span>
       </div>
     </div>
   </footer>
 
-  <!-- Link to JS -->
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
