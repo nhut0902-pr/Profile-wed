@@ -1,137 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nhutcoder - Profile & AI Tools</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nhựt — Portfolio</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- GSAP + ScrollTrigger (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Meta -->
+  <meta name="description" content="Nhựt — Developer Web & Android, nghiên cứu AI. Portfolio cá nhân." />
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="profile">
-        <img src="avatar.png" alt="Nhutcoder" class="avatar" id="avatar">
-        <div class="typing-container">
-          <h1 id="typing-text"></h1>
-        </div>
-        <p>Developer | AI Enthusiast | Tech Lover</p>
-      </div>
-    </div>
-  </header>
-
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats">
-        <div class="stat-box">
-          <i class="fa-solid fa-download"></i>
-          <span class="stat-number" id="download-count">0</span>
-          <p>Lượt tải APK</p>
-        </div>
-        <div class="stat-box">
-          <i class="fa-solid fa-user-group"></i>
-          <span class="stat-number" id="subscriber-count">0</span>
-          <p>Người đăng ký</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APK Download -->
-  <section class="download-section">
-    <div class="container">
-      <h2>📥 Tải Ứng Dụng APK</h2>
-      <a href="https://github.com/nhut0902-pr/Profile-wed/releases/download/v1.1.0/app-release.apk" 
-         class="download-btn" 
-         id="download-link"
-         download="Nhutcoder_App_v1.1.0.apk">
-        <i class="fa-solid fa-download"></i> Tải APK Ngay
-      </a>
-      <p class="note">✅ Khóa ứng dụng bằng sinh trắc học - Không quảng cáo - Phiên bản mới nhất: v1.1.0</p>
-    </div>
-  </section>
-
-  <!-- AI Tools -->
-  <section class="ai-tools">
-    <div class="container">
-      <h2>🤖 10 Công cụ AI mạnh nhất hiện nay</h2>
-      <div class="tool-list" id="tool-list">
-        <!-- Sẽ được thêm bằng JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog Section -->
-  <section class="blog-section">
-    <div class="container">
-      <h2>📰 Tin tức & Blog AI</h2>
-      <div class="blog-list" id="blog-list">
-        <!-- Sẽ được thêm bằng JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Signup Form -->
-  <section class="signup-section">
-    <div class="container">
-      <h2>🔔 Đăng ký nhận cập nhật mới</h2>
-      <form action="https://formspree.io/f/mdkdlvdp" method="POST" id="signup-form">
-        <input type="email" name="email" placeholder="Nhập email của bạn" required>
-        <button type="submit">Đăng ký</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Contact Info -->
-  <section class="contact-section">
-    <div class="container">
-      <h2>📬 Liên hệ với tôi</h2>
-      <ul class="contact-list">
-        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/nhut0902-pr" target="_blank">GitHub</a></li>
-        <li><i class="fa-brands fa-facebook"></i> <a href="https://www.facebook.com/share/15nrEZtVMx/" target="_blank">Facebook</a></li>
-        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:lamminhnhut09022011@gmail.com">Email</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Nhutcoder. All rights reserved.</p>
-      <div class="mode-switch">
-        <span>Chế độ tối</span>
-        <label class="switch">
-          <input type="checkbox" id="dark-mode-toggle">
-          <span class="slider round"></span>
-        </label>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modal Cảm ơn -->
-  <div id="thank-you-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3>🎉 Cảm ơn bạn đã đăng ký!</h3>
-      <p>Chúng tôi đã gửi email xác nhận. Hãy theo dõi để không bỏ lỡ cập nhật mới.</p>
-      <div class="modal-actions">
-        <a href="https://facebook.com/share/15nrEZtVMx/" target="_blank" class="btn-social">Theo dõi Facebook</a>
-        <a href="#" class="btn-primary" id="close-modal">Đóng</a>
-      </div>
-    </div>
+  <!-- Parallax background layers (uses background.jpg as base) -->
+  <div id="bg-root" aria-hidden="true">
+    <div class="bg-layer layer-base"></div>
+    <div class="bg-layer layer-1" data-speed="0.15"></div>
+    <div class="bg-layer layer-2" data-speed="0.35"></div>
+    <div class="bg-layer layer-3" data-speed="0.6"></div>
+    <div class="bg-overlay"></div>
   </div>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="brand">
+        <img src="avatar.jpg" alt="Avatar Nhựt" class="avatar" id="avatarImg">
+        <div class="brand-text">
+          <h1>Nhựt</h1>
+          <p class="role">Nghiên cứu AI · Developer Web & Android</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#projects" class="nav-link">Dự án</a>
+        <a href="#skills" class="nav-link">Kỹ năng</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Liên hệ</a>
+        <button id="themeToggle" class="btn small">Dark/Light</button>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero card" id="hero">
+      <div class="hero-left">
+        <h2 class="hello">Xin chào, tôi là <span class="name">Nhựt</span></h2>
+        <p class="intro">Tôi xây dựng ứng dụng có thiết kế tinh gọn, hiệu năng cao và trải nghiệm người dùng xuất sắc.</p>
+
+        <p class="typing-line"><span id="typing"></span><span class="cursor" aria-hidden="true"></span></p>
+
+        <div class="hero-links">
+          <a class="btn" href="https://www.facebook.com/share/1KYMpTEuSb/" target="_blank" rel="noopener">Facebook</a>
+          <a class="btn" href="https://github.com/nhut0902-pr" target="_blank" rel="noopener">Github</a>
+          <a class="btn" href="https://github.com/nhut0902-pr/Profile-wed/releases/download/v1.1.0/app-release.apk" target="_blank" rel="noopener">Tải APK</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="parallax-card">
+          <h4>Ứng dụng nổi bật</h4>
+          <p class="muted">Khóa app bằng sinh trắc học</p>
+          <a class="btn" href="https://github.com/nhut0902-pr/Profile-wed/releases/download/v1.1.0/app-release.apk" target="_blank" rel="noopener">Download APK</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="section-head">
+        <h3>Dự án tiêu biểu</h3>
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all">Tất cả</button>
+          <button class="filter" data-filter="web">Web</button>
+          <button class="filter" data-filter="game">Game</button>
+          <button class="filter" data-filter="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <article class="project card" data-type="web" tabindex="0">
+          <div class="project-inner">
+            <h4>Gmail Plus Generator</h4>
+            <p class="muted">Utility tool</p>
+            <a href="https://github.com/nhut0902-pr/gmail-plus-generato" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </article>
+
+        <article class="project card" data-type="game" tabindex="0">
+          <div class="project-inner">
+            <h4>Game Tank</h4>
+            <p class="muted">Trò chơi xe tăng</p>
+            <a href="https://github.com/nhut0902-pr/Game-tank" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </article>
+
+        <article class="project card" data-type="web" tabindex="0">
+          <div class="project-inner">
+            <h4>Hình trái tim 3D</h4>
+            <p class="muted">Đồ họa 3D</p>
+            <a href="https://github.com/nhut0902-pr/Hinh-trai-tim-3D" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h3>Kỹ năng</h3>
+      <div class="skills-grid">
+        <div class="skill card">
+          <h4>Phát triển Web</h4>
+          <div class="progress" data-value="90"><i></i></div>
+        </div>
+        <div class="skill card">
+          <h4>Phát triển Android</h4>
+          <div class="progress" data-value="85"><i></i></div>
+        </div>
+        <div class="skill card">
+          <h4>Machine Learning</h4>
+          <div class="progress" data-value="70"><i></i></div>
+        </div>
+        <div class="skill card">
+          <h4>UI/UX Design</h4>
+          <div class="progress" data-value="68"><i></i></div>
+        </div>
+        <div class="skill card">
+          <h4>DevOps</h4>
+          <div class="progress" data-value="55"><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+      <h3>Testimonials</h3>
+      <div class="testimonials-grid">
+        <div class="testimonial card">
+          <strong>Nguyễn A.</strong>
+          <p class="muted">Nhựt làm việc chuyên nghiệp, giao tiếp rõ ràng và bàn giao đúng hạn.</p>
+        </div>
+        <div class="testimonial card">
+          <strong>Trần B.</strong>
+          <p class="muted">Ứng dụng có hiệu năng tốt, UX mượt mà.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Tools -->
+    <section class="section">
+      <h3>10 Công cụ AI nổi bật</h3>
+      <ul class="ai-list">
+        <li><a href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT — OpenAI</a></li>
+        <li><a href="https://huggingface.co" target="_blank" rel="noopener">Hugging Face</a></li>
+        <li><a href="https://stability.ai" target="_blank" rel="noopener">Stability AI</a></li>
+        <li><a href="https://colab.research.google.com" target="_blank" rel="noopener">Google Colab</a></li>
+        <li><a href="https://bard.google.com" target="_blank" rel="noopener">Google Bard</a></li>
+        <li><a href="https://replicate.com" target="_blank" rel="noopener">Replicate</a></li>
+        <li><a href="https://runwayml.com" target="_blank" rel="noopener">Runway</a></li>
+        <li><a href="https://suno.ai" target="_blank" rel="noopener">Suno (AI âm nhạc)</a></li>
+        <li><a href="https://descript.com" target="_blank" rel="noopener">Descript (AI audio & video)</a></li>
+        <li><a href="https://canva.com" target="_blank" rel="noopener">Canva (AI thiết kế)</a></li>
+      </ul>
+    </section>
+
+    <!-- Contact / Formspree -->
+    <section id="contact" class="section">
+      <h3>Liên hệ</h3>
+      <div class="contact-grid card">
+        <form id="contactForm" action="https://formspree.io/f/mdkdlvdp" method="POST" class="contact-form">
+          <label>
+            <span>Họ tên</span>
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required>
+          </label>
+          <label>
+            <span>Lời nhắn</span>
+            <textarea name="message" rows="4"></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn">Gửi / Đăng ký</button>
+            <button type="reset" class="btn ghost">Xóa</button>
+          </div>
+          <div id="formMsg" aria-live="polite" class="form-msg"></div>
+        </form>
+
+        <div class="contact-links">
+          <h4>Liên kết</h4>
+          <ul>
+            <li><a href="https://www.facebook.com/share/1KYMpTEuSb/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://github.com/nhut0902-pr" target="_blank" rel="noopener">Github</a></li>
+            <li><a href="https://github.com/nhut0902-pr/Profile-wed/releases/download/v1.1.0/app-release.apk" target="_blank" rel="noopener">APK (Khóa app bằng sinh trắc học)</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      © Nhựt — Portfolio • Thiết kế & phát triển
+    </footer>
+
+  </div>
+
+  <!-- Script -->
+  <script src="script.js" defer></script>
 </body>
 </html>
