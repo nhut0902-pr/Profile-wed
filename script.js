@@ -1,148 +1,156 @@
-// 1. Hiệu ứng gõ chữ
-const typingText = document.getElementById('typing-text');
-const phrases = ['Nhutcoder', 'Developer', 'AI Lover', 'Tech Blogger'];
-let phraseIndex = 0;
-let charIndex = 0;
+/* script.js
+   Chứa: Typing animation, progress bars, project filter, parallax mouse, GSAP reveal, theme toggle, Formspree simple handling
+*/
 
-function type() {
-  const currentPhrase = phrases[phraseIndex];
-  if (charIndex < currentPhrase.length) {
-    typingText.textContent += currentPhrase[charIndex];
-    charIndex++;
-    setTimeout(type, 100);
-  } else {
-    setTimeout(erase, 1500);
-  }
-}
+// Wait DOM
+document.addEventListener('DOMContentLoaded', function() {
 
-function erase() {
-  if (charIndex > 0) {
-    typingText.textContent = typingText.textContent.slice(0, -1);
-    charIndex--;
-    setTimeout(erase, 50);
-  } else {
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-    setTimeout(type, 500);
-  }
-}
+  /* ========== Typing animation ========== */
+  (function typing() {
+    const phrases = [
+      "Phát triển web • Ứng dụng Android • AI enthusiast",
+      "Thiết kế UI/UX tinh gọn",
+      "Tập trung vào hiệu năng và trải nghiệm người dùng"
+    ];
+    const el = document.getElementById('typing');
+    let pi = 0, ci = 0, forward = true;
 
-type();
+    function tick() {
+      const full = phrases[pi];
+      if (forward) {
+        ci++;
+        el.textContent = full.slice(0, ci);
+        if (ci === full.length) { forward = false; setTimeout(tick, 1000); return; }
+      } else {
+        ci--;
+        el.textContent = full.slice(0, ci);
+        if (ci === 0) { forward = true; pi = (pi + 1) % phrases.length; }
+      }
+      setTimeout(tick, forward ? 60 : 24);
+    }
+    tick();
+  })();
 
-// 2. Chế độ sáng/tối
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-const body = document.body;
+  /* ========== Progress bars animate on scroll ========== */
+  (function progressBars() {
+    const bars = document.querySelectorAll('.progress');
+    if (!bars.length) return;
+    // animate when in view (simple)
+    function animate() {
+      bars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          const v = parseInt(bar.getAttribute('data-value') || 70, 10);
+          const inner = bar.querySelector('i');
+          if (inner) inner.style.width = v + '%';
+        }
+      });
+    }
+    animate();
+    window.addEventListener('scroll', animate);
+    window.addEventListener('resize', animate);
+  })();
 
-if (localStorage.getItem('dark-mode') === 'enabled') {
-  body.classList.add('dark-mode');
-  darkModeToggle.checked = true;
-}
+  /* ========== Project filters ========== */
+  (function projectFilter() {
+    const grid = document.getElementById('projectsGrid');
+    const filters = document.getElementById('filters');
+    if (!grid || !filters) return;
+    filters.addEventListener('click', e => {
+      const btn = e.target.closest('.filter');
+      if (!btn) return;
+      filters.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.getAttribute('data-filter');
+      grid.querySelectorAll('.project').forEach(p => {
+        if (f === 'all' || p.dataset.type === f) p.style.display = 'block';
+        else p.style.display = 'none';
+      });
+    });
+  })();
 
-darkModeToggle.addEventListener('change', () => {
-  body.classList.toggle('dark-mode');
-  localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+  /* ========== Simple parallax (mouse move) ========== */
+  (function parallaxMouse() {
+    const root = document.getElementById('bg-root');
+    if (!root) return;
+    const layers = root.querySelectorAll('.bg-layer[data-speed]');
+    root.addEventListener('mousemove', e => {
+      const w = root.clientWidth, h = root.clientHeight;
+      const x = (e.clientX / w) - 0.5;
+      const y = (e.clientY / h) - 0.5;
+      layers.forEach(l => {
+        const s = parseFloat(l.getAttribute('data-speed')) || 0.2;
+        const tx = -x * s * 40;
+        const ty = -y * s * 30;
+        l.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+      });
+    });
+    // subtle motion on mobile via device orientation (if available)
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', ev => {
+        const x = ev.gamma ? ev.gamma / 90 : 0; // -1..1
+        const y = ev.beta ? ev.beta / 180 : 0; // -1..1
+        layers.forEach(l => {
+          const s = parseFloat(l.getAttribute('data-speed')) || 0.2;
+          const tx = x * s * 40;
+          const ty = y * s * 30;
+          l.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        });
+      }, true);
+    }
+  })();
+
+  /* ========== GSAP reveal animations ========== */
+  (function gsapReveal() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.utils.toArray('.card').forEach(el => {
+      gsap.from(el, {
+        y: 20, opacity: 0, duration: 0.8,
+        scrollTrigger: { trigger: el, start: 'top 92%' }
+      });
+    });
+  })();
+
+  /* ========== Theme toggle (dark/light) ========== */
+  (function themeToggle() {
+    const btn = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    function setTheme(t) {
+      if (t === 'light') root.setAttribute('data-theme', 'light');
+      else root.removeAttribute('data-theme');
+      localStorage.setItem('theme', t === 'light' ? 'light' : 'dark');
+    }
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') setTheme('light');
+
+    if (btn) btn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      setTheme(cur === 'light' ? 'dark' : 'light');
+    });
+  })();
+
+  /* ========== Simple form handling (Formspree) ========== */
+  (function formHandler() {
+    const form = document.getElementById('contactForm');
+    const msgEl = document.getElementById('formMsg');
+    if (!form) return;
+    form.addEventListener('submit', (ev) => {
+      // Let HTML handle submit to Formspree; here we provide UX messaging if needed.
+      msgEl.textContent = 'Đang gửi...';
+      // After submit, Formspree will redirect or show response — we can also handle via fetch if wanted.
+      // For now just show message; if you prefer AJAX submission, we can change to fetch() POST to Formspree.
+      setTimeout(() => {
+        msgEl.textContent = 'Nếu trang không chuyển, kiểm tra email của bạn hoặc liên hệ trực tiếp.';
+      }, 1200);
+    });
+  })();
+
+  /* Accessibility: keyboard hover-like effect for project cards */
+  (function keyboardProjectHover() {
+    document.querySelectorAll('.project').forEach(p => {
+      p.addEventListener('focus', () => p.classList.add('focused'));
+      p.addEventListener('blur', () => p.classList.remove('focused'));
+    });
+  })();
+
 });
-
-// 3. Danh sách AI Tools có link
-const tools = [
-  { name: "ChatGPT", desc: "Trợ lý AI đa năng của OpenAI.", link: "https://chat.openai.com" },
-  { name: "Gemini", desc: "AI đa mô hình từ Google.", link: "https://gemini.google.com" },
-  { name: "Claude", desc: "AI an toàn, logic từ Anthropic.", link: "https://claude.ai" },
-  { name: "DALL-E 3", desc: "Tạo ảnh từ mô tả văn bản.", link: "https://openai.com/dall-e" },
-  { name: "Midjourney", desc: "Tạo ảnh nghệ thuật chất lượng cao.", link: "https://www.midjourney.com" },
-  { name: "Stable Diffusion", desc: "Mô hình AI mở tạo hình ảnh.", link: "https://stability.ai" },
-  { name: "Perplexity", desc: "Tìm kiếm thông minh với AI.", link: "https://perplexity.ai" },
-  { name: "Notion AI", desc: "Hỗ trợ viết, ghi chú, quản lý công việc.", link: "https://www.notion.so" },
-  { name: "GitHub Copilot", desc: "Trợ lý lập trình AI.", link: "https://github.com/features/copilot" },
-  { name: "Runway ML", desc: "AI cho video, âm thanh, sáng tạo.", link: "https://runwayml.com" }
-];
-
-const toolList = document.getElementById('tool-list');
-tools.forEach(tool => {
-  const card = document.createElement('div');
-  card.className = 'tool-card';
-  card.innerHTML = `
-    <a href="${tool.link}" target="_blank" style="color: inherit; text-decoration: none;">
-      <h3><i class="fa-solid fa-robot"></i> ${tool.name}</h3>
-      <p>${tool.desc}</p>
-    </a>
-  `;
-  toolList.appendChild(card);
-});
-
-// 4. Blog / Tin tức AI
-const blogPosts = [
-  { title: "Hướng dẫn dùng ChatGPT hiệu quả", date: "10/04/2025", desc: "5 mẹo giúp bạn khai thác tối đa sức mạnh của ChatGPT." },
-  { title: "Gemini vs GPT-4: Ai mạnh hơn?", date: "05/04/2025", desc: "So sánh chi tiết hiệu suất, tốc độ và độ chính xác." },
-  { title: "Mẹo lập trình nhanh với GitHub Copilot", date: "01/04/2025", desc: "Tăng tốc code với trợ lý AI ngay trong VS Code." }
-];
-
-const blogList = document.getElementById('blog-list');
-blogPosts.forEach(post => {
-  const item = document.createElement('div');
-  item.className = 'blog-post';
-  item.innerHTML = `
-    <h3>${post.title}</h3>
-    <span class="date">${post.date}</span>
-    <p>${post.desc}</p>
-  `;
-  blogList.appendChild(item);
-});
-
-// 5. Modal cảm ơn
-const modal = document.getElementById('thank-you-modal');
-const closeBtn = document.querySelector('.close');
-const closeModalBtn = document.getElementById('close-modal');
-const signupForm = document.getElementById('signup-form');
-
-signupForm.addEventListener('submit', function(e) {
-  // Không ngăn submit form (để Formspree xử lý)
-  setTimeout(() => {
-    modal.style.display = 'block';
-  }, 1000); // Chờ 1s để đảm bảo gửi thành công
-});
-
-closeBtn.onclick = () => modal.style.display = 'none';
-closeModalBtn.onclick = () => modal.style.display = 'none';
-window.onclick = (e) => {
-  if (e.target === modal) modal.style.display = 'none';
-};
-
-// 6. Easter Egg: Nhấn 5 lần vào avatar
-const avatar = document.getElementById('avatar');
-let clickCount = 0;
-
-avatar.addEventListener('click', () => {
-  clickCount++;
-  if (clickCount === 5) {
-    alert("🎉 Chúc mừng! Bạn đã tìm thấy Easter Egg bí mật! Cảm ơn bạn đã khám phá trang web của tôi!");
-    clickCount = 0;
-  }
-});
-
-// 7. Thống kê lượt tải (giả lập - bạn có thể thay bằng API GitHub sau)
-const downloadCount = document.getElementById('download-count');
-let count = 0;
-const target = 1234; // Số lượt tải thực tế
-
-const counter = setInterval(() => {
-  if (count < target) {
-    count++;
-    downloadCount.textContent = count.toLocaleString();
-  } else {
-    clearInterval(counter);
-  }
-}, 3);
-
-// Đếm người đăng ký (giả lập)
-const subscriberCount = document.getElementById('subscriber-count');
-let subCount = 0;
-const subTarget = 567;
-
-const subCounter = setInterval(() => {
-  if (subCount < subTarget) {
-    subCount++;
-    subscriberCount.textContent = subCount.toLocaleString();
-  } else {
-    clearInterval(subCounter);
-  }
-}, 10);
